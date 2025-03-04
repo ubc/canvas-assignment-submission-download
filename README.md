@@ -62,4 +62,4 @@ pip install canvasapi python-dotenv requests
 
 ## License
 
-This project is licensed under the  AGPL-3.0 license License.
+This project is licensed under the AGPL-3.0 license License.
