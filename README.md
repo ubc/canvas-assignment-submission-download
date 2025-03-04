@@ -44,7 +44,7 @@ pip install canvasapi python-dotenv requests
 ## How It Works
 
 - The script connects to Canvas using the provided API credentials.
-- It retrieves all submissions for the specified assignment.
+- It retrieves all submissions from published assignments in the course.
 - If a submission has an attached file, it downloads it into the `submissions/` directory.
 - The script will create the `submissions/` directory if it doesn’t exist.
 
@@ -58,7 +58,7 @@ pip install canvasapi python-dotenv requests
 ## Notes
 
 - Ensure your API token has the necessary permissions to access course submissions.
-- Submission download that fail are logged in `failed_downloads.txt`. 
+- Submission downloads that fail are logged in `failed_downloads.txt`. 
 
 ## License
 
