@@ -14,6 +14,8 @@ API_URL = os.getenv("CANVAS_API_URL")  # e.g., https://yourinstitution.instructu
 API_KEY = os.getenv("CANVAS_API_KEY")
 COURSE_ID = os.getenv("CANVAS_COURSE_ID")
 
+EXCLUDED_EXTENSIONS = {".mp4"} 
+
 canvas = Canvas(API_URL, API_KEY)
 course = canvas.get_course(COURSE_ID)
 assignments = course.get_assignments()
@@ -64,9 +66,10 @@ def process_submission(submission, assignment_dir):
     user = course.get_user(submission.user_id)
     if submission.attachments:
         for attachment in submission.attachments:
-            if attachment.filename.lower().endswith(".mp4"):
-                print(f"Skipping MP4 file: {attachment.filename}")
-                continue  # Skip .mp4 files
+            file_ext = os.path.splitext(attachment.filename)[1].lower()
+            if file_ext in EXCLUDED_EXTENSIONS:
+                print(f"Skipping file (excluded type): {attachment.filename}")
+                continue  # Skip excluded file types
             
             file_name = f"{user.name.replace(' ', '_')}_{user.id}_{attachment.filename}"
             file_path = os.path.join(assignment_dir, file_name)
