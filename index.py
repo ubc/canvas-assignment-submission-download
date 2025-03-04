@@ -25,13 +25,6 @@ BASE_DIR = "submissions"
 DOWNLOAD_DIR = os.path.join(BASE_DIR, course.name.replace("/", "_"))
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
-# Ensure submissions directory is gitignored
-gitignore_path = ".gitignore"
-gitignore_entry = "submissions/\n"
-if not os.path.exists(gitignore_path) or gitignore_entry not in open(gitignore_path).read():
-    with open(gitignore_path, "a") as gitignore_file:
-        gitignore_file.write(gitignore_entry)
-
 # Status file for failed downloads
 STATUS_FILE = os.path.join(DOWNLOAD_DIR, "failed_downloads.txt")
 
@@ -85,11 +78,17 @@ def process_submission(submission, assignment_dir):
         print(f"No file submission for user {submission.user_id}")
 
 
+# Filter only assignments (excluding quizzes)
+valid_assignments = [
+    assignment for assignment in assignments
+    if "online_quiz" not in assignment.submission_types  # Exclude quizzes
+]
+
 # Download submissions for all PUBLISHED assignments with controlled concurrency
-MAX_WORKERS = 10
+MAX_WORKERS = 20
 with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
     futures = []
-    for assignment in assignments:
+    for assignment in valid_assignments:
         # Only process published assignments
         if assignment.published:
             print(f"Processing published assignment: {assignment.name}")
