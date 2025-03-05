@@ -44,6 +44,9 @@ Ensure you have Python installed (3.8+ required).
 - If a submission has an attached file, it downloads it into the `submissions/` directory.
 - The script will create the `submissions/` directory if it doesn’t exist.
 
+## Excluding extensions
+If you want to filter out certain file extensions (for example, `.mp4` files), you can specify it as: `EXCLUDED_EXTENSIONS = {".mp4"}`.
+
 ## Adjusting `MAX_WORKERS`
 
 `MAX_WORKERS` controls the level of concurrency, which will impact performance:
