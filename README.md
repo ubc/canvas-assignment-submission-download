@@ -4,11 +4,7 @@ This script downloads all submissions for all assignments from a Canvas course u
 
 ## Prerequisites
 
-Ensure you have Python installed (3.x recommended). Install required dependencies:
-
-```bash
-pip install canvasapi python-dotenv requests
-```
+Ensure you have Python installed (3.8+ required).
 
 ## Setup
 
@@ -58,7 +54,7 @@ pip install canvasapi python-dotenv requests
 ## Notes
 
 - Ensure your API token has the necessary permissions to access course submissions.
-- Submission downloads that fail are logged in `failed_downloads.txt`. 
+- Submission downloads that fail are logged in `failed_downloads.txt`.
 
 ## License
 
