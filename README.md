@@ -34,7 +34,7 @@ Ensure you have Python installed (3.8+ required).
 5. **Run the script**:
 
    ```bash
-   python download_canvas_submissions.py
+   python index.py
    ```
 
 ## How It Works
