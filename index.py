@@ -24,7 +24,7 @@ assignments = course.get_assignments()
 
 # Output directory
 BASE_DIR = "submissions"
-DOWNLOAD_DIR = os.path.join(BASE_DIR, course.name.replace("/", "_"))
+DOWNLOAD_DIR = os.path.join(BASE_DIR, course.name.replace("/", "_")) + "_assignment_submissions"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 # Status file for failed downloads
@@ -184,7 +184,7 @@ valid_assignments = [
 ]
 
 # Download submissions for all PUBLISHED assignments with controlled concurrency
-MAX_WORKERS = 10 # set appropriate number of workers based on API rate limits
+MAX_WORKERS = 30 # set appropriate number of workers based on API rate limits
 with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
     futures = []
     
